@@ -1,0 +1,59 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+*.manifest
+*.spec
+
+# Virtual environment
+venv/
+ENV/
+env/
+.venv/
+
+# Django
+*.log
+*.pot
+*.pyc
+*.sqlite3
+db.sqlite3
+media/
+staticfiles/
+
+# Environment variables
+.env
+*.env
+
+# IDE / Editor files
+.vscode/
+.idea/
+*.swp
+.DS_Store
+
+# Migrations (optional – remove if you want to commit them)
+**/migrations/__pycache__/
+**/migrations/*.pyc
+# Uncomment the next line if you want to ignore all migration files
+# **/migrations/
+
+# Coverage / Test
+htmlcov/
+.coverage
+coverage.xml
+*.cover
+*.py,cover
+.cache
+nosetests.xml
+junit.xml
+.pytest_cache/
+
+# Docker
+*.pid
+*.seed
+*.pid.lock
