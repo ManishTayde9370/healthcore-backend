@@ -1,33 +1,33 @@
-# HealthCore – Django REST API
+# Healthcore Backend
 
-A Django REST Framework–based API for managing doctors, patients, and their relationships.  
-Implements JWT authentication, PostgreSQL persistence, and role-based access to data.
-
----
-
-## 🚀 Tech Stack
-- Django 5
-- Django REST Framework
-- JWT Authentication (SimpleJWT)
-- PostgreSQL
-- drf-spectacular (Swagger / API docs)
+A clean and simple **Django REST API** for managing patients, doctors, and their relationships.  
+Built with **Django REST Framework**, secured with **JWT authentication**, and powered by **PostgreSQL**.
 
 ---
 
-## 📂 Project Setup
+## 🚀 What’s Inside
+- Secure user authentication with JWT
+- CRUD endpoints for **patients** and **doctors**
+- Ability to **map patients to doctors**
+- Data stored in PostgreSQL
+- Swagger/OpenAPI docs with drf-spectacular
 
-### 1. Clone & Install Dependencies
+This project was developed as part of a technical assessment, but it follows real-world practices so it can be reused as a starter backend for healthcare or record-management systems.
+
+---
+
+## 🛠️ Setup Guide
+
+### 1. Install dependencies
 ```bash
-git clone <your-repo-url>
-cd healthcore
 pip install -r requirements.txt
 ```
 
-### 2. Configure Environment Variables
+### 2. Configure environment variables
 Create a `.env` file in the project root:
 
 ```ini
-DJANGO_SECRET_KEY=c06f=na9$o&awmsucw3v(m^0pix(p7y5#h98q(oe1658=!p8zy
+DJANGO_SECRET_KEY=your-secret-key
 DJANGO_DEBUG=True
 DJANGO_ALLOWED_HOSTS=127.0.0.1,localhost
 
@@ -38,35 +38,32 @@ POSTGRES_HOST=127.0.0.1
 POSTGRES_PORT=5433
 ```
 
-> ⚠️ Adjust DB credentials if your PostgreSQL is running on a different port or with different credentials.
-
-### 3. Setup Database
-Start PostgreSQL, then create the database:
+### 3. Setup database
+Log into PostgreSQL and create the database:
 ```sql
 CREATE DATABASE healthcore;
 ```
 
-Apply migrations:
+Run migrations:
 ```bash
 python manage.py migrate
 ```
 
-### 4. Run Development Server
+### 4. Start the server
 ```bash
 python manage.py runserver
 ```
-
-Server will start at [http://127.0.0.1:8000/](http://127.0.0.1:8000/)
+Server will be available at: [http://127.0.0.1:8000/](http://127.0.0.1:8000/)
 
 ---
 
-## 🔑 API Authentication
-This project uses **JWT tokens**.
+## 🔑 Authentication
+This API uses JWT tokens.
 
 1. Register → `/api/auth/register/`
 2. Login → `/api/auth/login/`  
-   Copy the `access` token from response.  
-3. For all protected endpoints, add a header:  
+   Copy the `access` token from the response.
+3. Add the token to your requests:  
    ```
    Authorization: Bearer <ACCESS_TOKEN>
    ```
@@ -76,26 +73,26 @@ This project uses **JWT tokens**.
 ## 📌 API Endpoints
 
 ### Authentication
-- `POST /api/auth/register/` – create new user  
-- `POST /api/auth/login/` – login and get JWT tokens  
+- `POST /api/auth/register/` – register user  
+- `POST /api/auth/login/` – login user and get tokens  
 
-### Patients (authenticated user only)
+### Patients (user-owned)
 - `POST /api/patients/` – create patient  
-- `GET /api/patients/` – list user’s patients  
-- `GET /api/patients/<id>/` – retrieve patient  
+- `GET /api/patients/` – list patients for current user  
+- `GET /api/patients/<id>/` – get single patient  
 - `PUT /api/patients/<id>/` – update patient  
 - `DELETE /api/patients/<id>/` – delete patient  
 
 ### Doctors
 - `POST /api/doctors/` – create doctor  
 - `GET /api/doctors/` – list all doctors  
-- `GET /api/doctors/<id>/` – retrieve doctor  
+- `GET /api/doctors/<id>/` – get single doctor  
 - `PUT /api/doctors/<id>/` – update doctor  
 - `DELETE /api/doctors/<id>/` – delete doctor  
 
-### Patient ↔ Doctor Mappings
+### Patient ↔ Doctor Mapping
 - `POST /api/mappings/` – assign doctor to patient  
-- `GET /api/mappings/` – list mappings for user’s patients  
+- `GET /api/mappings/` – list mappings for current user’s patients  
 - `DELETE /api/mappings/<id>/` – remove mapping  
 
 ---
